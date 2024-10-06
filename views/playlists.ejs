@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Playlists</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Your Playlists</h1>
+            <a href="/songs/upload" class="upload-btn">Upload Another Song</a>
+        </header>
+        
+        <main class="main-content">
+            <div class="audio-container">
+                <div class="audio-controls">
+                    <audio id="audioPlayer" controls></audio>
+                    <div class="buttons">
+                        <button id="prevBtn" class="btn">Previous</button>
+                        <button id="playBtn" class="btn">Play</button>
+                        <button id="nextBtn" class="btn">Next</button>
+                    </div>
+                    <p id="currentSongTitle"></p>
+                </div>
+                <div class="playlist-container">
+                    <ul id="playlist" class="playlist">
+                        <% if (playlists.length > 0) { %>
+                            <% playlists.forEach(function(song, index) { %>
+                                <li class="playlist-item" data-index="<%= index %>">
+                                    <strong class="song-title"><%= song.name %></strong>
+                                    <input type="hidden" class="song-path" value="<%= song.path %>">
+                                </li>
+                            <% }); %>
+                        <% } else { %>
+                            <p class="no-songs">No songs in the playlist. Start uploading now!</p>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <a href="/" class="back-to-home">Back to Home</a>
+        </footer>
+    </div>
+
+    <script src="/js/player.js"></script>
+</body>
+</html>
